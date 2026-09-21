@@ -21,6 +21,7 @@ declare(strict_types=1);
 return [
     // ---- Public marketing ----
     ['GET', '/', 'HomeController@index'],
+    ['GET', '/room-types/{id}', 'HomeController@roomType'],
 
     // ---- Authentication ----
     ['GET', '/register', 'AuthController@showRegister', ['guest']],
@@ -33,6 +34,24 @@ return [
 
     // ---- Role-aware dashboard ----
     ['GET', '/dashboard', 'DashboardController@index', ['auth']],
+
+    // ---- Staff & admin: rooms ----
+    ['GET', '/rooms', 'RoomController@index', ['role:staff,admin']],
+    ['GET', '/rooms/create', 'RoomController@create', ['role:staff,admin']],
+    ['POST', '/rooms', 'RoomController@store', ['role:staff,admin']],
+    ['GET', '/rooms/{id}', 'RoomController@show', ['role:staff,admin']],
+    ['GET', '/rooms/{id}/edit', 'RoomController@edit', ['role:staff,admin']],
+    ['POST', '/rooms/{id}/update', 'RoomController@update', ['role:staff,admin']],
+    ['POST', '/rooms/{id}/delete', 'RoomController@destroy', ['role:admin']],
+    ['POST', '/rooms/{id}/status', 'RoomController@changeStatus', ['role:staff,admin']],
+
+    // ---- Admin only: room types ----
+    ['GET', '/room-types', 'RoomTypeController@index', ['role:admin']],
+    ['GET', '/room-types/create', 'RoomTypeController@create', ['role:admin']],
+    ['POST', '/room-types', 'RoomTypeController@store', ['role:admin']],
+    ['GET', '/room-types/{id}/edit', 'RoomTypeController@edit', ['role:admin']],
+    ['POST', '/room-types/{id}/update', 'RoomTypeController@update', ['role:admin']],
+    ['POST', '/room-types/{id}/delete', 'RoomTypeController@destroy', ['role:admin']],
 
     // ---- Admin only: users ----
     ['GET', '/users', 'UserController@index', ['role:admin']],
