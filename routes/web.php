@@ -43,6 +43,14 @@ return [
     ['POST', '/reservations/{id}/status', 'ReservationController@updateStatus', ['role:staff,admin']],
     ['POST', '/reservations/{id}/cancel', 'ReservationController@cancel', ['role:staff,admin']],
 
+    // ---- Staff & admin: check-in, check-out and payments ----
+    ['GET', '/reservations/{id}/check-in', 'CheckInController@form', ['role:staff,admin']],
+    ['POST', '/reservations/{id}/check-in', 'CheckInController@store', ['role:staff,admin']],
+    ['GET', '/reservations/{id}/check-out', 'CheckOutController@form', ['role:staff,admin']],
+    ['POST', '/reservations/{id}/check-out', 'CheckOutController@store', ['role:staff,admin']],
+    ['POST', '/reservations/{id}/payments', 'PaymentController@store', ['role:staff,admin']],
+    ['POST', '/payments/{id}/refund', 'PaymentController@refund', ['role:admin']],
+
     // ---- Staff & admin: rooms ----
     ['GET', '/rooms', 'RoomController@index', ['role:staff,admin']],
     ['GET', '/rooms/create', 'RoomController@create', ['role:staff,admin']],
@@ -79,4 +87,5 @@ return [
     // ---- JSON endpoints (booking form, live availability) ----
     ['GET', '/api/available-rooms', 'ApiController@availableRooms', ['role:staff,admin']],
     ['GET', '/api/guests', 'ApiController@searchGuests', ['role:staff,admin']],
+    ['GET', '/api/rooms/{id}/availability', 'ApiController@roomAvailability', ['role:staff,admin']],
 ];
