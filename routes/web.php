@@ -21,4 +21,13 @@ declare(strict_types=1);
 return [
     // ---- Public marketing ----
     ['GET', '/', 'HomeController@index'],
+
+    // ---- Authentication ----
+    ['GET', '/register', 'AuthController@showRegister', ['guest']],
+    ['POST', '/register', 'AuthController@register', ['guest']],
+    ['GET', '/login', 'AuthController@showLogin', ['guest']],
+    ['POST', '/login', 'AuthController@login', ['guest']],
+    ['POST', '/logout', 'AuthController@logout', ['auth']],
+    ['GET', '/auth/google', 'GoogleAuthController@redirect', ['guest']],
+    ['GET', '/auth/google/callback', 'GoogleAuthController@callback', ['guest']],
 ];
