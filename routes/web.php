@@ -19,4 +19,6 @@ declare(strict_types=1);
  */
 
 return [
+    // ---- Public marketing ----
+    ['GET', '/', 'HomeController@index'],
 ];
