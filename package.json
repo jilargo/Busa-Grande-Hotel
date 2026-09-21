@@ -1,0 +1,12 @@
+{
+    "name": "busa-grande-hotel",
+    "private": true,
+    "description": "Frontend build tooling for Busa Grande Hotel (Tailwind CSS v4).",
+    "scripts": {
+        "build": "tailwindcss -i resources/css/app.css -o public/assets/css/app.css --minify",
+        "watch": "tailwindcss -i resources/css/app.css -o public/assets/css/app.css --watch"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.0.0"
+    }
+}

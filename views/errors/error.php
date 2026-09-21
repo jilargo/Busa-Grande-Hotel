@@ -1,0 +1,1 @@
+<?php // Rendered inside the "errors" layout; the layout owns the markup. ?>

@@ -1,0 +1,28 @@
+# --- Environment / secrets ---
+.env
+.env.local
+
+# --- Dependencies ---
+/vendor/
+/node_modules/
+
+# --- Database ---
+*.sqlite
+*.sqlite3
+
+# --- Build / runtime ---
+public/assets/css/app.css
+/public/uploads/*
+!/public/uploads/.htaccess
+!/public/uploads/rooms/.gitkeep
+storage/logs/*.log
+storage/cache/*
+!storage/logs/.gitkeep
+!storage/cache/.gitkeep
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/

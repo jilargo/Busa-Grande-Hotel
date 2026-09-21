@@ -1,0 +1,32 @@
+# Apache configuration for the public directory as document root.
+# Route everything that is not a real file or directory through index.php.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve existing files/directories directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Everything else -> front controller
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Hide the .env from the web in case the document root is misconfigured
+<FilesMatch "^\.(env|git)">
+    Require all denied
+</FilesMatch>
+<Files ".env">
+    Require all denied
+</Files>
+
+# Prefer PHP on devices/APIs; a purely static site is never served here
+Options -Indexes
+
+# Never serve .php from the uploads directory
+<DirectoryMatch "^/.*/uploads/">
+    <FilesMatch "\.(php|phtml|php3|php4|php5|phar)$">
+        Require all denied
+    </FilesMatch>
+</DirectoryMatch>
