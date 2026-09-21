@@ -33,4 +33,10 @@ return [
 
     // ---- Role-aware dashboard ----
     ['GET', '/dashboard', 'DashboardController@index', ['auth']],
+
+    // ---- Admin only: users ----
+    ['GET', '/users', 'UserController@index', ['role:admin']],
+    ['POST', '/users', 'UserController@store', ['role:admin']],
+    ['POST', '/users/{id}/active', 'UserController@setActive', ['role:admin']],
+    ['POST', '/users/{id}/delete', 'UserController@destroy', ['role:admin']],
 ];
