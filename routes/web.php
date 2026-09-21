@@ -45,6 +45,15 @@ return [
     ['POST', '/rooms/{id}/delete', 'RoomController@destroy', ['role:admin']],
     ['POST', '/rooms/{id}/status', 'RoomController@changeStatus', ['role:staff,admin']],
 
+    // ---- Staff & admin: guests ----
+    ['GET', '/guests', 'GuestController@index', ['role:staff,admin']],
+    ['GET', '/guests/create', 'GuestController@create', ['role:staff,admin']],
+    ['POST', '/guests', 'GuestController@store', ['role:staff,admin']],
+    ['GET', '/guests/{id}', 'GuestController@show', ['role:staff,admin']],
+    ['GET', '/guests/{id}/edit', 'GuestController@edit', ['role:staff,admin']],
+    ['POST', '/guests/{id}/update', 'GuestController@update', ['role:staff,admin']],
+    ['POST', '/guests/{id}/delete', 'GuestController@destroy', ['role:admin']],
+
     // ---- Admin only: room types ----
     ['GET', '/room-types', 'RoomTypeController@index', ['role:admin']],
     ['GET', '/room-types/create', 'RoomTypeController@create', ['role:admin']],
