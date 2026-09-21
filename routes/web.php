@@ -35,6 +35,14 @@ return [
     // ---- Role-aware dashboard ----
     ['GET', '/dashboard', 'DashboardController@index', ['auth']],
 
+    // ---- Staff & admin: reservations ----
+    ['GET', '/reservations', 'ReservationController@index', ['role:staff,admin']],
+    ['GET', '/reservations/create', 'ReservationController@create', ['role:staff,admin']],
+    ['POST', '/reservations', 'ReservationController@store', ['role:staff,admin']],
+    ['GET', '/reservations/{id}', 'ReservationController@show', ['role:staff,admin']],
+    ['POST', '/reservations/{id}/status', 'ReservationController@updateStatus', ['role:staff,admin']],
+    ['POST', '/reservations/{id}/cancel', 'ReservationController@cancel', ['role:staff,admin']],
+
     // ---- Staff & admin: rooms ----
     ['GET', '/rooms', 'RoomController@index', ['role:staff,admin']],
     ['GET', '/rooms/create', 'RoomController@create', ['role:staff,admin']],
@@ -67,4 +75,8 @@ return [
     ['POST', '/users', 'UserController@store', ['role:admin']],
     ['POST', '/users/{id}/active', 'UserController@setActive', ['role:admin']],
     ['POST', '/users/{id}/delete', 'UserController@destroy', ['role:admin']],
+
+    // ---- JSON endpoints (booking form, live availability) ----
+    ['GET', '/api/available-rooms', 'ApiController@availableRooms', ['role:staff,admin']],
+    ['GET', '/api/guests', 'ApiController@searchGuests', ['role:staff,admin']],
 ];
