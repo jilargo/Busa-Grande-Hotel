@@ -84,6 +84,16 @@ return [
     ['POST', '/users/{id}/active', 'UserController@setActive', ['role:admin']],
     ['POST', '/users/{id}/delete', 'UserController@destroy', ['role:admin']],
 
+    // ---- Guest self-service ----
+    ['GET', '/account/book', 'BookingController@book', ['role:guest']],
+    ['POST', '/account/reservations', 'BookingController@store', ['role:guest']],
+    ['GET', '/account/reservations', 'BookingController@myReservations', ['role:guest']],
+    ['GET', '/account/reservations/{id}', 'BookingController@show', ['role:guest']],
+    ['POST', '/account/reservations/{id}/cancel', 'BookingController@cancel', ['role:guest']],
+    ['GET', '/account/profile', 'ProfileController@show', ['role:guest']],
+    ['POST', '/account/profile', 'ProfileController@update', ['role:guest']],
+    ['POST', '/account/profile/password', 'ProfileController@changePassword', ['role:guest']],
+
     // ---- JSON endpoints (booking form, live availability) ----
     ['GET', '/api/available-rooms', 'ApiController@availableRooms', ['role:staff,admin']],
     ['GET', '/api/guests', 'ApiController@searchGuests', ['role:staff,admin']],
