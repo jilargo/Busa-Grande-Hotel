@@ -30,4 +30,7 @@ return [
     ['POST', '/logout', 'AuthController@logout', ['auth']],
     ['GET', '/auth/google', 'GoogleAuthController@redirect', ['guest']],
     ['GET', '/auth/google/callback', 'GoogleAuthController@callback', ['guest']],
+
+    // ---- Role-aware dashboard ----
+    ['GET', '/dashboard', 'DashboardController@index', ['auth']],
 ];
